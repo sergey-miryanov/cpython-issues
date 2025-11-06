@@ -1,0 +1,85 @@
+bench_mp_pool
+- 27 * slotdefs (warmup)
+- 82.8 ms	81.7 ms: 1.01x faster
+
+bench_thread_pool
+- 25 (warmup)
+- 887 us	891 us: 1.01x slower
+
+deepcopy_reduce
+- 1 * slotdefs
+- 2.73 us	2.78 us: 1.02x slower
+
+docutils
+- 347 * slotdefs (warmup)
+- not significant
+
+dulwich_log
+- 3 * slotdefs (warmup)
+- 59.7 ms	60.1 ms: 1.01x slower
+
+genshi_text
+- 9 * slotdefs (warmup)
+- 21.0 ms	21.1 ms: 1.00x slower
+
+genshi_xml
+- 9 * slotdefs (warmup)
+- 49.2 ms	49.6 ms: 1.01x slower
+
+html5lib
+- 33 * slotdefs (warmup)
+- 60.0 ms	62.6 ms: 1.04x slower
+
+mypy2
+- 196 * slotdefs (warmup)
+
+pprint_pformat
+- 196 * slotdefs (warmup)
+- 1.50 sec	1.49 sec: 1.01x faster
+
+pylint
+- 883 * slotdefs (warmup)
+- 7 * slotdefs
+- not significant
+
+regex_v8
+- 4 * slotdefs (warmup)
+- 23.6 ms	22.5 ms: 1.05x faster
+
+sympy_expand
+- 33 * slotdefs (warmup)
+- not significant
+
+sympy_integrate
+- 39 (warmup)
+- not significant
+
+sympy_sum
+- 39 (warmup)
+- 1
+- 149 ms	150 ms: 1.01x slower
+
+sympy_str
+- 30 (warmup)
+- 268 ms	269 ms: 1.00x slower
+
+typing_runtime_protocols
+- 187 * slotdefs (warmup)
+- 168 us	169 us: 1.01x slower
+
+xml_etree_parse
+- 6 * slotdefs (warmup)
+- 147 ms	141 ms: 1.04x faster
+
+xml_etree_iterparse
+- 26 (warmup)
+- 20
+- not significant
+
+xml_etree_generate
+- 6 (warmup)
+- 86.9 ms	85.9 ms: 1.01x faster
+
+xml_etree_process
+- 6 (warmup)
+- not significant
