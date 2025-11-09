@@ -46,4 +46,4 @@ def rec():
     rec()
 
 
-test_settrace_leak()
+rec()
