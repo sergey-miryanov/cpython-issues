@@ -1,3 +1,8 @@
-x = {1:1}
-z = x[1]
-x[1] = 2
+def test(n=2000):
+    d = {}
+    for i in range(n):
+        for j in range(n):
+            d[(i,j)] = i
+
+
+test()

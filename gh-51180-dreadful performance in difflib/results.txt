@@ -1,0 +1,36 @@
+
+```
+➜ c:\python\python27\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left200.txt').readlines(), open('right200.txt').readlines(), 'a', 'b', True)"
+10 loops, best of 3: 1.31 sec per loop
+
+ [2025-12-20 00:53:54] [X:\Work\cpython\issues\gh-51180-dreadful performance in difflib]  [main +16 ~1 -0 !] [󰅒 40.543]
+➜ c:\python\python27\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left500.txt').readlines(), open('right500.txt').readlines(), 'a', 'b', True)"
+10 loops, best of 3: 20.5 sec per loop
+
+ [2025-12-20 01:05:00] [X:\Work\cpython\issues\gh-51180-dreadful performance in difflib]  [main +16 ~1 -0 !] [󰅒 10:16.475]
+➜ c:\python\python27\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left1000.txt').readlines(), open('right1000.txt').readlines(), 'a', 'b', True)"
+10 loops, best of 3: 196 sec per loop
+
+ [2025-12-20 02:47:47] [X:\Work\cpython\issues\gh-51180-dreadful performance in difflib]  [main +16 ~1 -0 !] [󰅒 1:42:1.672]
+➜ X:\Work\cpython\installed\main\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left200.txt').readlines(), open('right200.txt').readlines(), 'a', 'b', True)"
+10 loops, best of 5: 69.1 msec per loop
+
+ [2025-12-20 09:11:48] [X:\Work\cpython\issues\gh-51180-dreadful performance in difflib]  [main +16 ~1 -0 !] [󰅒 4.166]
+➜ X:\Work\cpython\installed\main\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left500.txt').readlines(), open('right500.txt').readlines(), 'a', 'b', True)"
+10 loops, best of 5: 174 msec per loop
+
+ [2025-12-20 09:15:08] [X:\Work\cpython\issues\gh-51180-dreadful performance in difflib]  [main +16 ~1 -0 !] [󰅒 8.805]
+➜ X:\Work\cpython\installed\main\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left1000.txt').readlines(), open('right1000.txt').readlines(), 'a', 'b', True)"
+10 loops, best of 5: 373 msec per loop
+
+ [2025-12-20 09:16:57] [X:\Work\cpython\issues\gh-51180-dreadful performance in difflib]  [main +16 ~1 -0 !] [󰅒 18.804]
+```
+
+| Python | test    | iter time | total time              | relative (iter time) | expected | cmd                                                                                                                                                                                              |
+| ------ | ------- | --------- | ----------------------- | -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 2.7    | 200txt  | 1.31 sec  | 40.543 sec              |                      |          | `c:\python\python27\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left200.txt').readlines(), open('right200.txt').readlines(), 'a', 'b', True)"`               |
+| 2.7    | 500txt  | 20.5 sec  | 10 min 16.475 sec       | x15.6                | x2.5     | `c:\python\python27\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left500.txt').readlines(), open('right500.txt').readlines(), 'a', 'b', True)"`               |
+| 2.7    | 1000txt | 196 sec   | 1 hour 42 min 1/672 sec | x9.5                 | x2       | `c:\python\python27\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left1000.txt').readlines(), open('right1000.txt').readlines(), 'a', 'b', True)"`             |
+| main   | 200txt  | 69.1 msec | 4.166 sec               |                      |          | `X:\Work\cpython\installed\main\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left200.txt').readlines(), open('right200.txt').readlines(), 'a', 'b', True)"`   |
+| main   | 500txt  | 174 msec  | 8.805 sec               | x2.11                | x2.5     | `X:\Work\cpython\installed\main\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left500.txt').readlines(), open('right500.txt').readlines(), 'a', 'b', True)"`   |
+| main   | 100txt  | 373 msec  | 18.804 sec              | x2.14                | x2       | `X:\Work\cpython\installed\main\python.exe -m timeit -n 10 "import difflib; difflib.HtmlDiff().make_table(open('left1000.txt').readlines(), open('right1000.txt').readlines(), 'a', 'b', True)"` |

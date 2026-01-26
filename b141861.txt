@@ -1,0 +1,141 @@
+Running Debug|x64 interpreter...
+   0            RESUME                   0
+
+   1            LOAD_CONST               0 ('')
+                STORE_NAME               0 (str_v1)
+
+   2            LOAD_CONST               4 ((None, None, None, None, None))
+                STORE_NAME               1 (tuple_v2)
+
+   3            LOAD_SMALL_INT           4
+                STORE_NAME               2 (small_int_v3)
+
+   6            LOAD_CONST               2 (<code object f1 at 0x000002DCEF22AA70, file "..\issues\b141861.py", line 6>)
+                MAKE_FUNCTION
+                STORE_NAME               3 (f1)
+
+  24            LOAD_NAME                4 (range)
+                PUSH_NULL
+                LOAD_CONST               3 (19000)
+                CALL                     1
+                GET_ITER
+        L1:     FOR_ITER                19 (to L4)
+                STORE_NAME               5 (i_f1)
+
+  25            LOAD_NAME                6 (print)
+                PUSH_NULL
+                LOAD_NAME                5 (i_f1)
+                CALL                     1
+                POP_TOP
+
+  26            NOP
+
+  27    L2:     LOAD_NAME                3 (f1)
+                PUSH_NULL
+                CALL                     0
+                POP_TOP
+        L3:     JUMP_BACKWARD           21 (to L1)
+
+  24    L4:     END_FOR
+                POP_ITER
+                LOAD_CONST               1 (None)
+                RETURN_VALUE
+
+  --    L5:     PUSH_EXC_INFO
+
+  28            LOAD_NAME                7 (RecursionError)
+                CHECK_EXC_MATCH
+                POP_JUMP_IF_FALSE        5 (to L9)
+        L6:     NOT_TAKEN
+        L7:     POP_TOP
+
+  29    L8:     POP_EXCEPT
+                JUMP_BACKWARD           35 (to L1)
+
+  28    L9:     RERAISE                  0
+
+  --   L10:     COPY                     3
+                POP_EXCEPT
+                RERAISE                  1
+ExceptionTable:
+  L2 to L3 -> L5 [2]
+  L5 to L6 -> L10 [3] lasti
+  L7 to L8 -> L10 [3] lasti
+  L9 to L10 -> L10 [3] lasti
+
+Disassembly of <code object f1 at 0x000002DCEF22AA70, file "..\issues\b141861.py", line 6>:
+  --           MAKE_CELL                1 (recursive_wrapper_4569)
+
+   6           RESUME                   0
+
+   8           LOAD_GLOBAL              1 (range + NULL)
+               LOAD_SMALL_INT          10
+               CALL                     1
+               GET_ITER
+       L1:     FOR_ITER                14 (to L2)
+               STORE_FAST               0 (_)
+
+   9           LOAD_GLOBAL              3 (abs + NULL)
+               LOAD_SMALL_INT           0
+               CALL                     1
+               POP_TOP
+               JUMP_BACKWARD           16 (to L1)
+
+   8   L2:     END_FOR
+               POP_ITER
+
+  11           LOAD_GLOBAL              4 (tuple_v2)
+               LOAD_GLOBAL              6 (small_int_v3)
+               BINARY_OP               26 ([])
+               POP_TOP
+
+  12           LOAD_GLOBAL              4 (tuple_v2)
+               LOAD_GLOBAL              6 (small_int_v3)
+               BINARY_OP               26 ([])
+               POP_TOP
+
+  13           LOAD_GLOBAL              4 (tuple_v2)
+               LOAD_GLOBAL              6 (small_int_v3)
+               BINARY_OP               26 ([])
+               POP_TOP
+
+  15           LOAD_FAST_BORROW         1 (recursive_wrapper_4569)
+               BUILD_TUPLE              1
+               LOAD_CONST               1 (<code object recursive_wrapper_4569 at 0x000002DCEF3BB220, file "..\issues\b141861.py", line 15>)
+               MAKE_FUNCTION
+               SET_FUNCTION_ATTRIBUTE   8 (closure)
+               STORE_DEREF              1 (recursive_wrapper_4569)
+
+  21           LOAD_DEREF               1 (recursive_wrapper_4569)
+               PUSH_NULL
+               CALL                     0
+               POP_TOP
+               LOAD_CONST               2 (None)
+               RETURN_VALUE
+
+Disassembly of <code object recursive_wrapper_4569 at 0x000002DCEF3BB220, file "..\issues\b141861.py", line 15>:
+  --           COPY_FREE_VARS           1
+
+  15           RESUME                   0
+
+  16           LOAD_GLOBAL              0 (str_v1)
+               LOAD_GLOBAL              0 (str_v1)
+               COMPARE_OP             132 (>)
+               POP_TOP
+
+  17           LOAD_GLOBAL              0 (str_v1)
+               LOAD_GLOBAL              0 (str_v1)
+               COMPARE_OP             132 (>)
+               POP_TOP
+
+  18           LOAD_GLOBAL              0 (str_v1)
+               LOAD_GLOBAL              0 (str_v1)
+               COMPARE_OP             132 (>)
+               POP_TOP
+
+  19           LOAD_DEREF               0 (recursive_wrapper_4569)
+               PUSH_NULL
+               CALL                     0
+               POP_TOP
+               LOAD_CONST               0 (None)
+               RETURN_VALUE
