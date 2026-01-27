@@ -1,1 +1,4 @@
 __pycache__
+venv
+.3.*
+.gc*
